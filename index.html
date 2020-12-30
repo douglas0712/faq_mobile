@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bootstrap FAQ Template | PrepBootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+ 
+    <link rel="stylesheet"  type="text/css" href="recursos_faq/css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="recursos_faq/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="recursos_faq/font-awesome/css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="recursos_faq/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="recursos_faq/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="recursos_faq/js/jquery.mobile-1.4.5.js"></script>   
+
+ 
+    <style type="text/css">
+      
+
+
+
+
+#txtPesquisa
+{
+
+ border: none; /* <-- This thing here */
+ border:solid 1px #ccc;
+ border-radius: 4px;
+ width:100%;
+ height: 50px;
+ margin-bottom:  20px;
+
+
+
+}
+
+
+#corpo
+{
+    padding: 10px;
+}
+
+
+
+.mycustom {
+border: solid 1px #000000;
+position: relative;
+}
+.mycustom input[type=text] {
+border: none;
+width: 100%;
+padding-right: 123px;
+}
+.mycustom .input-group-prepend {
+position: absolute;
+right: 4px;
+top: 4px;
+bottom: 4px;z-index:9;
+}
+
+
+
+
+h1 { 
+        color: #000000; 
+    } 
+      
+    .buttonIn { 
+        width: 100%; 
+        position: relative; 
+        height: 50px;
+ 
+    } 
+      
+    input { 
+        margin: 0px; 
+        padding: 0px; 
+        width: 100%; 
+        outline: none; 
+        height: 30px; 
+        border-radius: 5px; 
+    } 
+      
+    span { 
+        position: absolute; 
+        padding:5px;
+        top: 0; 
+
+        right: 0px; 
+        z-index: 2; 
+        border: none; 
+
+        height: 100%; 
+        cursor: pointer;
+
+     
+        text-align: center;
+        display: flex;
+        align-items: center;
+    
+        
+    } 
+
+    span img{ 
+       
+
+
+        
+    }
+
+
+    </style>
+
+    <script>
+     
+     
+           $(document).ready(function()
+            {
+
+                 function setarEventosNosBotoes()
+                {
+
+
+                          $(".btnPositivo").click(function()
+                          {
+                              requisitarCadastrarAvaliacao($(this).parent().parent().attr("data-item"), true);                    
+                          }); 
+
+
+                          $(".btnNegativo").click(function()
+                          {
+                             requisitarCadastrarAvaliacao($(this).parent().parent().attr("data-item"), false);                        
+                          }); 
+
+
+                }
+
+
+                var getUrlParameter = function getUrlParameter(sParam) {
+                          var sPageURL = window.location.search.substring(1),
+                              sURLVariables = sPageURL.split('&'),
+                              sParameterName,
+                              i;
+
+                          for (i = 0; i < sURLVariables.length; i++) {
+                              sParameterName = sURLVariables[i].split('=');
+
+                              if (sParameterName[0] === sParam) {
+                                  return sParameterName[1] === undefined ? true :                 decodeURIComponent(sParameterName[1]);
+                              }
+                          }
+                      };
+
+                  function montarHtmlitemPergunta(pergunta, resposta, iditem, codItem)
+                  {
+                     // var texto = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a class='accordion-toggle' //data-toggle='collapse' data-parent='#accordion' href='#collapseOne'>"+pergunta+"?</a></h4></div><div id='collapseOne' //class='panel-collapse collapse in'><div class='panel-body'>"+resposta+"</div></div></div>";
+
+                     var texto = "  <div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a class='accordion-toggle collapsed' data-toggle='collapse' data-parent='#accordion' href='#"+iditem+"'>"+pergunta+"</a></h4></div><div id='"+iditem+"' data-item="+(codItem)+" class='panel-collapse collapse'><div class='panel-body'>"+resposta+"</div><br /><div  width=100% style='text-align:right'><button width=25 height=25 class=btnNegativo>-</button><button width=25 height=25 class=btnPositivo>+</button></div></div>";
+
+                        return texto;
+
+                  }
+
+                  function requisitarPesquisa(TextoPesquisa)
+                  {
+                    
+                   var emailusuario =  getUrlParameter('email');
+                   var loginUsuario = getUrlParameter('login');
+                   var codigoAssociacao = getUrlParameter('cod');
+                   var idContexto = getUrlParameter('contexto');
+
+                  //teste
+                   if (idContexto == undefined)
+                   {
+                      idContexto= 3;
+                   }
+              
+                      var objSessao = {TextoPesquisa:TextoPesquisa, IdContexto: idContexto, 
+                                       Emailusuario: emailusuario,LoginUsuario : loginUsuario,
+                                       CodigoAssociacao : codigoAssociacao };
+
+
+                       //collapseEleven
+                        var settings = {
+                            "url": "http://localhost:63131/api/Pesquisa/consultarPerguntas",
+                            "method": "POST",
+                            "Access-Control-Allow-Origin": "http://localhost:63131",
+                            "Access-Control-Allow-Credentials": "true",
+                            "timeout": 0,
+                            "headers": {
+                                "Content-Type": "application/json"
+                            },
+                            "data": JSON.stringify(objSessao),
+                        };
+
+                         $.ajax(settings).done(function (response)
+                            {
+                               
+                                       processarRetornoPesquisa(response);
+                            })
+                  }            
+                            
+                $("#btnPesquisar").click(function()
+                {
+
+                    $("#accordion").empty();
+
+                      var conteudoCampoPesquisa = $("#txtPesquisa").val();  
+                      requisitarPesquisa(conteudoCampoPesquisa);
+           
+
+
+
+                }); 
+
+
+
+                  function requisitarCadastrarAvaliacao(codItem, utilidade)
+                  {
+                    
+
+                      var objExlucsaoItem = {IdResposta:codItem, Utilidade: utilidade};
+        
+                        var settings = {
+                            "url": "http://localhost:63131/api/Avaliacao/cadastrarAvaliacao",
+                            "method": "POST",
+                            "Access-Control-Allow-Origin": "http://localhost:63131",
+                            "Access-Control-Allow-Credentials": "true",
+                            "timeout": 0,
+                            "headers": {
+                                "Content-Type": "application/json"
+                            },
+                            "data": JSON.stringify(objExlucsaoItem),
+                        };
+
+                         $.ajax(settings).done(function (response)
+                            {
+                               
+                                console.log(response);
+
+                                var perguntas;
+                                var resposta;
+
+                                var idItem;
+
+                                if (!response.Sucesso) 
+                                {
+
+                                    var msgErro = (response.RetornoErro != undefined ? response.RetornoErro : "Erro desconhecido");
+                                    alert(msgErro);
+                                    return;
+                                }
+                                else
+                                {
+                                  alert("Avaliação cadastrada com sucesso!");
+                                    return;
+                                }
+                      
+                            })
+                  }
+
+
+
+                  function processarRetornoPesquisa(response)
+                  {
+
+                     console.log(response);
+
+                                var perguntas;
+                                var resposta;
+
+                                var idItem;
+
+                                if (!response.Sucesso) 
+                                {
+
+                                    var msgErro = (response.RetornoErro != undefined ? response.RetornoErro : "Erro desconhecido");
+                                    alert(msgErro);
+                                    return;
+                                }
+
+                                if (response.ListaPerguntas == undefined || response.ListaPerguntas.length == 0) 
+                                {
+                                    alert("Nehuma das perguntas cadastradas é compatível com a busca...");
+                                    return;
+                                }
+                                $("#areaPerguntas").empty();
+
+                                for (var i=0; i<response.ListaPerguntas.length; i++)
+                                {
+                                     idItem = "collapse"+i;
+                                     idpergunta =  response.ListaPerguntas[i].Id;
+                                     perguntas = response.ListaPerguntas[i].Descricao; 
+                                     resposta = response.ListaPerguntas[i].Resposta; 
+
+                                     var htmlPergunta = "";  
+                                     htmlPergunta += "<div id='page"+i+"' data-role='page'>";  
+
+
+                                    htmlPergunta += "<div data-role='header'> <h1>F.A.Q</h1></div>";  
+
+                                    htmlPergunta += "<div id=areaPerguntas data-role='content'> ";  
+
+                                    htmlPergunta += "<p><a href='#resp"+i+"' data-transition='slide'>"+perguntas+"</a></p> ";
+
+                                    htmlPergunta += "</div>";   
+                                    htmlPergunta += "</div>"; 
+
+                                    //-------------------------------------------------------------------------------------------------------
+                                    //-------------------------------------------------------------------------------------------------------//-------------------------------------------------------------------------------------------------------//-------------------------------------------------------------------------------------------------------//-------------------------------------------------------------------------------------------------------
+
+                                    var strHtmlPergunta ="<p><a style='color:#000000;text-decoration:none; font-weight: bold;' class='estiloPergunta' style='text-decoration:none' href='#resp"+i+"' data-transition='slide'>"+perguntas+"</a></p>"; 
+
+                                    resposta = resposta.substring(0, resposta.length);
+
+                                    strHtmlPergunta +="<p style=font-size:14px;>"+resposta+"</p><hr>"; 
+
+                                    $("#areaPerguntas").append(strHtmlPergunta);
+                                  
+                                    var htmlResposta = "";  
+                                    htmlResposta += "<div id='resp"+i+"'  data-role='page'><div data-role='header'> <h1 style=font-weight:bold>Cabecalho F.A.Q</h1></div>"; 
+
+
+                                    htmlResposta += "<div id=areaRespostas data-role='content'>"; 
+
+                                    htmlResposta += resposta; 
+
+                                    htmlResposta += "<p><a  href='#padrao1'  data-transition='slide'>Voltar pra Pergunta?</a></p>";
+
+                                    htmlResposta += "</div>";   
+                                    htmlResposta += "</div>"; 
+
+                                    console.log("htmlResposta");
+                                    console.log(htmlResposta);
+
+                                           //  if(true)return;
+
+                                    $("body").append(htmlResposta);
+       
+                                } 
+
+                             //   alert("foi retornado "+response.ListaPerguntas.length);
+
+                                setarEventosNosBotoes();       
+                    
+
+                  
+                  }
+
+
+
+
+                requisitarPesquisa("");
+
+
+
+var teste = {"ListaPerguntas":[{"Id":3,"Descricao":"Descrição pergunta 3?","Resposta":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar neque vel quam iaculis, quis malesuada metus iaculis. Mauris ultrices, dolor non placerat auctor, libero mi finibus augue, tempus eleifend neque ex quis eros. Etiam vestibulum tortor sit amet neque pretium imperdiet. Curabitur lobortis sem turpis, et ultrices libero dictum lacinia. Cras blandit ex at commodo rutrum. Nunc sed lectus a augue commodo sollicitudin. Vestibulum tincidunt tempus facilisis.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":4,"Descricao":"Descrição pergunta 4?","Resposta":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar neque vel quam iaculis, quis malesuada metus iaculis. Mauris ultrices, dolor non placerat auctor, libero mi finibus augue, tempus eleifend neque ex quis eros. Etiam vestibulum tortor sit amet neque pretium imperdiet. Curabitur lobortis sem turpis, et ultrices libero dictum lacinia. Cras blandit ex at commodo rutrum. Nunc sed lectus a augue commodo sollicitudin. Vestibulum tincidunt tempus facilisis.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":6,"Descricao":"Descrição pergunta 6?","Resposta":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar neque vel quam iaculis, quis malesuada metus iaculis. Mauris ultrices, dolor non placerat auctor, libero mi finibus augue, tempus eleifend neque ex quis eros. Etiam vestibulum tortor sit amet neque pretium imperdiet. Curabitur lobortis sem turpis, et ultrices libero dictum lacinia. Cras blandit ex at commodo rutrum. Nunc sed lectus a augue commodo sollicitudin. Vestibulum tincidunt tempus facilisis.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":1,"Descricao":"Descrição pergunta 1?","Resposta":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar neque vel quam iaculis, quis malesuada metus iaculis. Mauris ultrices, dolor non placerat auctor, libero mi finibus augue, tempus eleifend neque ex quis eros. Etiam vestibulum tortor sit amet neque pretium imperdiet. Curabitur lobortis sem turpis, et ultrices libero dictum lacinia. Cras blandit ex at commodo rutrum. Nunc sed lectus a augue commodo sollicitudin. Vestibulum tincidunt tempus facilisis.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":21,"Descricao":"Nova pergunta 21","Resposta":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar neque vel quam iaculis, quis malesuada metus iaculis. Mauris ultrices, dolor non placerat auctor, libero mi finibus augue, tempus eleifend neque ex quis eros. Etiam vestibulum tortor sit amet neque pretium imperdiet. Curabitur lobortis sem turpis, et ultrices libero dictum lacinia. Cras blandit ex at commodo rutrum. Nunc sed lectus a augue commodo sollicitudin. Vestibulum tincidunt tempus facilisis.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":22,"Descricao":"Nova pergunta 22","Resposta":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar neque vel quam iaculis, quis malesuada metus iaculis. Mauris ultrices, dolor non placerat auctor, libero mi finibus augue, tempus eleifend neque ex quis eros. Etiam vestibulum tortor sit amet neque pretium imperdiet. Curabitur lobortis sem turpis, et ultrices libero dictum lacinia. Cras blandit ex at commodo rutrum. Nunc sed lectus a augue commodo sollicitudin. Vestibulum tincidunt tempus facilisis.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":23,"Descricao":"Nova pergunta 23","Resposta":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar neque vel quam iaculis, quis malesuada metus iaculis. Mauris ultrices, dolor non placerat auctor, libero mi finibus augue, tempus eleifend neque ex quis eros. Etiam vestibulum tortor sit amet neque pretium imperdiet. Curabitur lobortis sem turpis, et ultrices libero dictum lacinia. Cras blandit ex at commodo rutrum. Nunc sed lectus a augue commodo sollicitudin. Vestibulum tincidunt tempus facilisis.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":24,"Descricao":"Nova pergunta 24","Resposta":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar neque vel quam iaculis, quis malesuada metus iaculis. Mauris ultrices, dolor non placerat auctor, libero mi finibus augue, tempus eleifend neque ex quis eros. Etiam vestibulum tortor sit amet neque pretium imperdiet. Curabitur lobortis sem turpis, et ultrices libero dictum lacinia. Cras blandit ex at commodo rutrum. Nunc sed lectus a augue commodo sollicitudin. Vestibulum tincidunt tempus facilisis.","PalavrasChave":null,"ArrayIdsContextosVinculados":null}],"RetornoErro":null,"Sucesso":true};
+
+
+//processarRetornoPesquisa(teste);
+
+        
+            });
+
+    </script>
+</head>
+<body id=corpo>
+
+
+
+
+<form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
+  <input type="text" placeholder="Search.." name="search2">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+
+  <div id="padrao1" data-role="page">
+        <div data-role="header">  
+           <h1 style=font-weight:bold>Cabecalho F.A.Q</h1>
+        </div>        
+<br / >
+<!-- Bootstrap FAQ - START -->
+<div class="formulario" style="padding-left: 100px;padding-right: 100px;">
+
+    <form style="display: inline-block; width: 100%;">
+
+
+
+  
+    <br><br> 
+    <div class="buttonIn"> 
+        <input type="text"  style="width: 100%" placeholder="Qual é sua duvida?" size=50  id="txtPesquisa" name="txtPesquisa" value=""> 
+        <span id="clear">
+        
+          <img src="https://cdns.iconmonstr.com/wp-content/assets/preview/2018/240/iconmonstr-search-thin.png" id=btnPesquisar width=20px;>
+
+        </span> 
+    </div>
+
+</form>  
+
+
+
+</div>
+        <div id=areaPerguntas data-role="content"> 
+       
+           <p><a style='color:red;' href="#padrao2" data-transition="slide">Pergunta parão</a></p>
+          
+          <!-- flip transition -->
+        </div>
+
+
+
+  </div>
+
+  <div id="padrao2" data-role="page">
+        <div data-role="header">  
+           <h1>jQuery Mobile</h1>
+        </div>        
+        <div id=areaRespostas data-role="content"> 
+           Resposta da pergunta 1
+           <p><a href="#padrao1"  data-transition="slide">Voltar pra Pergunta?</a></p>
+        </div>
+  </div> 
+
+
+
+
+<!-- Bootstrap FAQ - END -->
+
+</div>
+
+</body>
+</html>
