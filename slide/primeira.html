@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+      <title>jQuery Transitions : data-transition Attribute</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-2.1.3.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>  
+</head> 
+<body> 
+    <div id="padrao1" data-role="page">
+        <div data-role="header">  
+           <h1>jQuery Mobile</h1>
+        </div>        
+        <div id=areaPerguntas data-role="content"> 
+       
+        
+
+           <p><a href='#resp0' data-transition='slide'>O que é produto obrigatório?</a></p>
+
+           <p><a href='#resp1' data-transition='slide'>O que é esse gráfico!!!!!!!!!!!!!!!!!!!!!!!!!?</a></p>
+          
+          <!-- flip transition -->
+        </div>
+
+  </div>
+
+  <div id='resp0' data-role='page'><div data-role='header'> <h1>jQuery Mobile</h1></div><div id=areaRespostas data-role='content'><h1>Hello world!</h1>
+
+<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>
+<p><a href='#padrao1'  data-transition='slide'>Voltar pra Pergunta?</a></p></div></div>
+
+<div id='resp1' data-role='page'><div data-role='header'> <h1>jQuery Mobile</h1></div><div id=areaRespostas data-role='content'><p><span style=\"background-color:#f39c12\">Eu</span> estou <span style=\"font-size:72px\">vericando</span> se o ckeditor <span style=\"background-color:#f39c12\">funciona </span>bem!</p>
+<p><a href='#padrao1'  data-transition='slide'>Voltar pra Pergunta?</a></p></div></div>
+
+
+
+
+</body>
+</html>
