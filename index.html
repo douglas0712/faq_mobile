@@ -29,7 +29,7 @@
  border-radius: 4px;
  width:100%;
  height: 50px;
- margin-bottom:  20px;
+ margin-bottom:  0px;
 
 
 
@@ -110,6 +110,13 @@ h1 {
     }
 
 
+.ui-content
+{
+
+  padding-left: 10px;
+    padding-right: 10px;
+}
+
     </style>
 
     <script>
@@ -175,6 +182,21 @@ h1 {
                    {
                       idContexto= 3;
                    }
+
+                    if (loginUsuario == undefined)
+                   {
+                      loginUsuario= "login";
+                   }
+
+                    if (codigoAssociacao == undefined)
+                   {
+                      codigoAssociacao= "1951";
+                   }
+
+                    if (emailusuario == undefined)
+                   {
+                      emailusuario=  "email@teste.com.br";
+                   }
               
                       var objSessao = {TextoPesquisa:TextoPesquisa, IdContexto: idContexto, 
                                        Emailusuario: emailusuario,LoginUsuario : loginUsuario,
@@ -194,15 +216,19 @@ h1 {
                             "data": JSON.stringify(objSessao),
                         };
 
-                        // $.ajax(settings).done(function (response)
-                        //    {
+                          var str = {'ListaPerguntas':[{'Id':1,'Descricao':'Não consigo encontrar no app, o que eu faço','Resposta':'Clique no botão recuperar senha!','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':2,'Descricao':'Como eu faço pra cadastrar usuário?','Resposta':'Resposta sobre cadastro de usuário no app consultor!','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':3,'Descricao':'O que é produto obrigatório?','Resposta':'Resposta sobre produto obrigatório no consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':4,'Descricao':'O que é esse gráfico?','Resposta':'Resposta sobre grafico no app consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':5,'Descricao':'O que é esse botão de implemento?','Resposta':'Respota sobre implemento no app consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':6,'Descricao':'Como funciona esse geração de contrato avulso?','Resposta':'Resposta sobre geração de contrato avulso','PalavrasChave':null,'ArrayIdsContextosVinculados':null}],'RetornoErro':null,'Sucesso':true}; 
 
-                           var str = {'ListaPerguntas':[{'Id':1,'Descricao':'Não consigo encontrar no app, o que eu faço','Resposta':'Clique no botão recuperar senha!','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':2,'Descricao':'Como eu faço pra cadastrar usuário?','Resposta':'Resposta sobre cadastro de usuário no app consultor!','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':3,'Descricao':'O que é produto obrigatório?','Resposta':'Resposta sobre produto obrigatório no consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':4,'Descricao':'O que é esse gráfico?','Resposta':'Resposta sobre grafico no app consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':5,'Descricao':'O que é esse botão de implemento?','Resposta':'Respota sobre implemento no app consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':6,'Descricao':'Como funciona esse geração de contrato avulso?','Resposta':'Resposta sobre geração de contrato avulso','PalavrasChave':null,'ArrayIdsContextosVinculados':null}],'RetornoErro':null,'Sucesso':true}; 
+                 
+                     
+                         processarRetornoPesquisa(str);
 
-                        //  var response =JSON.parse(str);
-                               
-                                       processarRetornoPesquisa(str);
-                          //  })
+                      //   $.ajax(settings).done(function (response)
+                       //  {
+                      
+
+                       //      processarRetornoPesquisa(response);
+                       // 
+                       // })
                   }            
                             
                 $("#btnPesquisar").click(function()
@@ -316,21 +342,29 @@ h1 {
 
                                     var strHtmlPergunta ="<p><a style='color:#000000;text-decoration:none; font-weight: bold;' class='estiloPergunta' style='text-decoration:none' href='#resp"+i+"' data-transition='slide'>"+perguntas+"</a></p>"; 
 
-                                    resposta = resposta.substring(0, resposta.length);
+                                  //  resposta = resposta.substring(0, resposta.length);
 
+
+    
                                     strHtmlPergunta +="<p style=font-size:14px;>"+resposta+"</p><hr>"; 
+
+
+                                    console.log("strHtmlPergunta");
+                                    console.log(strHtmlPergunta);
 
                                     $("#areaPerguntas").append(strHtmlPergunta);
                                   
                                     var htmlResposta = "";  
-                                    htmlResposta += "<div id='resp"+i+"'  data-role='page'><div data-role='header'> <h1 style=font-weight:bold>Cabecalho F.A.Q</h1></div>"; 
+                                    htmlResposta += "<div id='resp"+i+"'  data-role='page'><div data-role='header' style='height:30px;width:100%;display:inline-block;padding-left:10px;padding-top:5px;'> <div style='width:25%;height:100%;display:inline-block'><a href='#padrao1'  data-transition='slide'><img src='https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/arrow_left-512.png'  width=15px height=15px></a></div><div style='width:50%;height:100%;display:inline-block;text-align:center'>Cabecalho! F.A.Q</div></div>"; 
 
 
-                                    htmlResposta += "<div id=areaRespostas data-role='content'>"; 
 
+                                    htmlResposta += "<div id=areaRespostas style='margin-top:50px;' data-role='content'>"; 
+                                   
+                                    htmlResposta += "<h1 style='font-size:15px;font-weight:bolder;'>"+perguntas + "</h1>";
                                     htmlResposta += resposta; 
 
-                                    htmlResposta += "<p><a  href='#padrao1'  data-transition='slide'>Voltar pra Pergunta?</a></p>";
+                   
 
                                     htmlResposta += "</div>";   
                                     htmlResposta += "</div>"; 
@@ -386,7 +420,7 @@ var teste = {"ListaPerguntas":[{"Id":3,"Descricao":"Descrição pergunta 3?","Re
         </div>        
 <br / >
 <!-- Bootstrap FAQ - START -->
-<div class="formulario" style="padding-left: 100px;padding-right: 100px;">
+<div class="formulario" style="padding-left: 10px;padding-right: 10px;">
 
     <form style="display: inline-block; width: 100%;">
 
@@ -408,7 +442,7 @@ var teste = {"ListaPerguntas":[{"Id":3,"Descricao":"Descrição pergunta 3?","Re
 
 
 </div>
-        <div id=areaPerguntas data-role="content"> 
+        <div id=areaPerguntas data-role="content" style="margin-top:25px;"> 
        
            <p><a style='color:red;' href="#padrao2" data-transition="slide">Pergunta parão</a></p>
           
