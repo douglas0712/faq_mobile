@@ -21,24 +21,12 @@
 
 
 
-#txtPesquisa
-{
 
- border: none; /* <-- This thing here */
- border:solid 1px #ccc;
- border-radius: 4px;
- width:100%;
- height: 50px;
- margin-bottom:  0px;
-
-
-
-}
 
 
 #corpo
 {
-    padding: 10px;
+    padding: 0px;
 }
 
 
@@ -109,12 +97,36 @@ h1 {
         
     }
 
+    #btnPesquisar
+    {
+      width:  20px;
+      margin-right:10px;
+    }
+#txtPesquisa
+{
+
+ border: none; /* <-- This thing here */
+ border:solid 1px #ccc;
+ border-radius: 4px;
+ width:100%;
+ height: 50px;
+ margin-bottom:  0px;
+ padding-left: 10px;
+
+
+
+
+}
 
 .ui-content
 {
 
-  padding-left: 10px;
-    padding-right: 10px;
+  padding-left: 25px;
+    padding-right: 25px;
+}
+
+.ui-header {
+    margin-top: 0px;
 }
 
     </style>
@@ -139,6 +151,27 @@ h1 {
                           {
                              requisitarCadastrarAvaliacao($(this).parent().parent().attr("data-item"), false);                        
                           }); 
+
+                           $("a.estiloPergunta").click(function()
+                          {
+                               console.log('teste');
+
+                               
+                        //  setTimeout(function(){ $(".areaAvaliacao").show(); }, 3000);
+
+                             
+                          });
+
+
+                           $(".btnVoltar").click(function()
+                          {
+                   
+
+                               $(".areaAvaliacao").hide();
+
+
+                             
+                          });
 
 
                 }
@@ -216,19 +249,19 @@ h1 {
                             "data": JSON.stringify(objSessao),
                         };
 
-                          var str = {'ListaPerguntas':[{'Id':1,'Descricao':'Não consigo encontrar no app, o que eu faço','Resposta':'Clique no botão recuperar senha!','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':2,'Descricao':'Como eu faço pra cadastrar usuário?','Resposta':'Resposta sobre cadastro de usuário no app consultor!','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':3,'Descricao':'O que é produto obrigatório?','Resposta':'Resposta sobre produto obrigatório no consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':4,'Descricao':'O que é esse gráfico?','Resposta':'Resposta sobre grafico no app consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':5,'Descricao':'O que é esse botão de implemento?','Resposta':'Respota sobre implemento no app consultor','PalavrasChave':null,'ArrayIdsContextosVinculados':null},{'Id':6,'Descricao':'Como funciona esse geração de contrato avulso?','Resposta':'Resposta sobre geração de contrato avulso','PalavrasChave':null,'ArrayIdsContextosVinculados':null}],'RetornoErro':null,'Sucesso':true}; 
+                       var str = {"ListaPerguntas":[{"Id":1,"Descricao":"Não consigo encontrar no app, o que eu faço","Resposta":"Clique no botão recuperar senha,     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, augue id malesuada aliquet, enim sapien sagittis velit, vitae malesuada magna massa eu diam. Nulla hendrerit venenatis tortor, non vehicula justo semper vel. Praesent ultrices pulvinar sagittis. Sed consectetur lorem eu mauris faucibus, at lacinia dolor imperdiet. Aliquam tincidunt feugiat viverra. Fusce malesuada purus eget est molestie efficitur. Praesent placerat sed magna a placerat. Sed dignissim elementum urna et mollis. Etiam quam ex, ultrices ac augue ac, tincidunt venenatis massa. Suspendisse consectetur augue sed maximus cursus. Etiam sagittis ante ipsum, vitae fringilla mauris tristique quis. Integer sit amet auctor massa, interdum dictum mauris. Praesent sed venenatis ante.  Fusce porttitor, magna non laoreet tincidunt, massa erat auctor elit, vel tincidunt eros ipsum ac quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas commodo neque eros, ut porttitor felis vestibulum id. Fusce a laoreet nulla. Nunc ut fermentum magna. Vivamus lacinia velit sit amet eros convallis, nec porttitor purus blandit. Mauris finibus porttitor pulvinar. Praesent molestie mi lacus.  Mauris cursus quis massa quis imperdiet. Phasellus semper at ligula vel blandit. Curabitur porttitor egestas tortor eu sagittis. Aliquam erat volutpat. Nam orci elit, condimentum sit amet arcu in, posuere laoreet orci. Nam ac commodo augue. In sollicitudin metus sit amet scelerisque bibendum.  In hac habitasse platea dictumst. Integer justo ligula, mollis non orci non, dictum dictum ante. Mauris eu arcu pellentesque, pellentesque lectus porttitor, consectetur urna. Morbi facilisis turpis tortor. Maecenas non hendrerit ex. Pellentesque euismod orci augue, sit amet laoreet justo rutrum in. Suspendisse eu consequat nisi, sed ullamcorper orci. Fusce vestibulum metus vel turpis commodo, eu malesuada arcu pharetra. Donec aliquet cursus diam eu euismod. Praesent commodo efficitur libero, sed volutpat urna fermentum non. Integer pretium, leo eu fermentum sagittis, odio neque lobortis lectus, a vestibulum erat eros quis libero. Duis sed leo eu orci interdum fringilla. Nulla sagittis velit id turpis elementum ultrices. Proin dignissim ipsum a tincidunt sagittis.  Nulla eget nunc tortor. Nulla egestas, neque a gravida efficitur, mi est mattis tortor, commodo gravida magna sapien scelerisque ante. Pellentesque elementum commodo nibh eget tempor. Fusce hendrerit ullamcorper egestas. Quisque consectetur sem et lorem laoreet, eu maximus diam varius. In hac habitasse platea dictumst. Duis non consectetur tortor. Quisque nulla diam, pretium eget sollicitudin pellentesque, viverra non dolor.<br /><br /><iframe width=350 height=240 src=https://www.youtube.com/embed/WGqSdR8smx0 frameborder=0 allow=accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen></iframe>","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":2,"Descricao":"Como eu faço pra cadastrar usuário?","Resposta":"Resposta sobre cadastro de usuário no app consultor!     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, augue id malesuada aliquet, enim sapien sagittis velit, vitae malesuada magna massa eu diam. Nulla hendrerit venenatis tortor, non vehicula justo semper vel. Praesent ultrices pulvinar sagittis. Sed consectetur lorem eu mauris faucibus, at lacinia dolor imperdiet. Aliquam tincidunt feugiat viverra. Fusce malesuada purus eget est molestie efficitur. Praesent placerat sed magna a placerat. Sed dignissim elementum urna et mollis. Etiam quam ex, ultrices ac augue ac, tincidunt venenatis massa. Suspendisse consectetur augue sed maximus cursus. Etiam sagittis ante ipsum, vitae fringilla mauris tristique quis. Integer sit amet auctor massa, interdum dictum mauris. Praesent sed venenatis ante.\n\nFusce porttitor, magna non laoreet tincidunt, massa erat auctor elit, vel tincidunt eros ipsum ac quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas commodo neque eros, ut porttitor felis vestibulum id. Fusce a laoreet nulla. Nunc ut fermentum magna. Vivamus lacinia velit sit amet eros convallis, nec porttitor purus blandit. Mauris finibus porttitor pulvinar. Praesent molestie mi lacus.\n\nMauris cursus quis massa quis imperdiet. Phasellus semper at ligula vel blandit. Curabitur porttitor egestas tortor eu sagittis. Aliquam erat volutpat. Nam orci elit, condimentum sit amet arcu in, posuere laoreet orci. Nam ac commodo augue. In sollicitudin metus sit amet scelerisque bibendum.\n\nIn hac habitasse platea dictumst. Integer justo ligula, mollis non orci non, dictum dictum ante. Mauris eu arcu pellentesque, pellentesque lectus porttitor, consectetur urna. Morbi facilisis turpis tortor. Maecenas non hendrerit ex. Pellentesque euismod orci augue, sit amet laoreet justo rutrum in. Suspendisse eu consequat nisi, sed ullamcorper orci. Fusce vestibulum metus vel turpis commodo, eu malesuada arcu pharetra. Donec aliquet cursus diam eu euismod. Praesent commodo efficitur libero, sed volutpat urna fermentum non. Integer pretium, leo eu fermentum sagittis, odio neque lobortis lectus, a vestibulum erat eros quis libero. Duis sed leo eu orci interdum fringilla. Nulla sagittis velit id turpis elementum ultrices. Proin dignissim ipsum a tincidunt sagittis.\n\nNulla eget nunc tortor. Nulla egestas, neque a gravida efficitur, mi est mattis tortor, commodo gravida magna sapien scelerisque ante. Pellentesque elementum commodo nibh eget tempor. Fusce hendrerit ullamcorper egestas. Quisque consectetur sem et lorem laoreet, eu maximus diam varius. In hac habitasse platea dictumst. Duis non consectetur tortor. Quisque nulla diam, pretium eget sollicitudin pellentesque, viverra non dolor.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":3,"Descricao":"O que é produto obrigatório?","Resposta":"Resposta sobre produto obrigatório no consultor!     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, augue id malesuada aliquet, enim sapien sagittis velit, vitae malesuada magna massa eu diam. Nulla hendrerit venenatis tortor, non vehicula justo semper vel. Praesent ultrices pulvinar sagittis. Sed consectetur lorem eu mauris faucibus, at lacinia dolor imperdiet. Aliquam tincidunt feugiat viverra. Fusce malesuada purus eget est molestie efficitur. Praesent placerat sed magna a placerat. Sed dignissim elementum urna et mollis. Etiam quam ex, ultrices ac augue ac, tincidunt venenatis massa. Suspendisse consectetur augue sed maximus cursus. Etiam sagittis ante ipsum, vitae fringilla mauris tristique quis. Integer sit amet auctor massa, interdum dictum mauris. Praesent sed venenatis ante.\n\nFusce porttitor, magna non laoreet tincidunt, massa erat auctor elit, vel tincidunt eros ipsum ac quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas commodo neque eros, ut porttitor felis vestibulum id. Fusce a laoreet nulla. Nunc ut fermentum magna. Vivamus lacinia velit sit amet eros convallis, nec porttitor purus blandit. Mauris finibus porttitor pulvinar. Praesent molestie mi lacus.\n\nMauris cursus quis massa quis imperdiet. Phasellus semper at ligula vel blandit. Curabitur porttitor egestas tortor eu sagittis. Aliquam erat volutpat. Nam orci elit, condimentum sit amet arcu in, posuere laoreet orci. Nam ac commodo augue. In sollicitudin metus sit amet scelerisque bibendum.\n\nIn hac habitasse platea dictumst. Integer justo ligula, mollis non orci non, dictum dictum ante. Mauris eu arcu pellentesque, pellentesque lectus porttitor, consectetur urna. Morbi facilisis turpis tortor. Maecenas non hendrerit ex. Pellentesque euismod orci augue, sit amet laoreet justo rutrum in. Suspendisse eu consequat nisi, sed ullamcorper orci. Fusce vestibulum metus vel turpis commodo, eu malesuada arcu pharetra. Donec aliquet cursus diam eu euismod. Praesent commodo efficitur libero, sed volutpat urna fermentum non. Integer pretium, leo eu fermentum sagittis, odio neque lobortis lectus, a vestibulum erat eros quis libero. Duis sed leo eu orci interdum fringilla. Nulla sagittis velit id turpis elementum ultrices. Proin dignissim ipsum a tincidunt sagittis.\n\nNulla eget nunc tortor. Nulla egestas, neque a gravida efficitur, mi est mattis tortor, commodo gravida magna sapien scelerisque ante. Pellentesque elementum commodo nibh eget tempor. Fusce hendrerit ullamcorper egestas. Quisque consectetur sem et lorem laoreet, eu maximus diam varius. In hac habitasse platea dictumst. Duis non consectetur tortor. Quisque nulla diam, pretium eget sollicitudin pellentesque, viverra non dolor.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":4,"Descricao":"O que é esse gráfico?","Resposta":"Resposta sobre grafico no app consultor!     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, augue id malesuada aliquet, enim sapien sagittis velit, vitae malesuada magna massa eu diam. Nulla hendrerit venenatis tortor, non vehicula justo semper vel. Praesent ultrices pulvinar sagittis. Sed consectetur lorem eu mauris faucibus, at lacinia dolor imperdiet. Aliquam tincidunt feugiat viverra. Fusce malesuada purus eget est molestie efficitur. Praesent placerat sed magna a placerat. Sed dignissim elementum urna et mollis. Etiam quam ex, ultrices ac augue ac, tincidunt venenatis massa. Suspendisse consectetur augue sed maximus cursus. Etiam sagittis ante ipsum, vitae fringilla mauris tristique quis. Integer sit amet auctor massa, interdum dictum mauris. Praesent sed venenatis ante.\n\nFusce porttitor, magna non laoreet tincidunt, massa erat auctor elit, vel tincidunt eros ipsum ac quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas commodo neque eros, ut porttitor felis vestibulum id. Fusce a laoreet nulla. Nunc ut fermentum magna. Vivamus lacinia velit sit amet eros convallis, nec porttitor purus blandit. Mauris finibus porttitor pulvinar. Praesent molestie mi lacus.\n\nMauris cursus quis massa quis imperdiet. Phasellus semper at ligula vel blandit. Curabitur porttitor egestas tortor eu sagittis. Aliquam erat volutpat. Nam orci elit, condimentum sit amet arcu in, posuere laoreet orci. Nam ac commodo augue. In sollicitudin metus sit amet scelerisque bibendum.\n\nIn hac habitasse platea dictumst. Integer justo ligula, mollis non orci non, dictum dictum ante. Mauris eu arcu pellentesque, pellentesque lectus porttitor, consectetur urna. Morbi facilisis turpis tortor. Maecenas non hendrerit ex. Pellentesque euismod orci augue, sit amet laoreet justo rutrum in. Suspendisse eu consequat nisi, sed ullamcorper orci. Fusce vestibulum metus vel turpis commodo, eu malesuada arcu pharetra. Donec aliquet cursus diam eu euismod. Praesent commodo efficitur libero, sed volutpat urna fermentum non. Integer pretium, leo eu fermentum sagittis, odio neque lobortis lectus, a vestibulum erat eros quis libero. Duis sed leo eu orci interdum fringilla. Nulla sagittis velit id turpis elementum ultrices. Proin dignissim ipsum a tincidunt sagittis.\n\nNulla eget nunc tortor. Nulla egestas, neque a gravida efficitur, mi est mattis tortor, commodo gravida magna sapien scelerisque ante. Pellentesque elementum commodo nibh eget tempor. Fusce hendrerit ullamcorper egestas. Quisque consectetur sem et lorem laoreet, eu maximus diam varius. In hac habitasse platea dictumst. Duis non consectetur tortor. Quisque nulla diam, pretium eget sollicitudin pellentesque, viverra non dolor.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":5,"Descricao":"O que é esse botão de implemento?","Resposta":"Acesse o app connect e clique em esqueci a senha.!     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, augue id malesuada aliquet, enim sapien sagittis velit, vitae malesuada magna massa eu diam. Nulla hendrerit venenatis tortor, non vehicula justo semper vel. Praesent ultrices pulvinar sagittis. Sed consectetur lorem eu mauris faucibus, at lacinia dolor imperdiet. Aliquam tincidunt feugiat viverra. Fusce malesuada purus eget est molestie efficitur. Praesent placerat sed magna a placerat. Sed dignissim elementum urna et mollis. Etiam quam ex, ultrices ac augue ac, tincidunt venenatis massa. Suspendisse consectetur augue sed maximus cursus. Etiam sagittis ante ipsum, vitae fringilla mauris tristique quis. Integer sit amet auctor massa, interdum dictum mauris. Praesent sed venenatis ante.\n\nFusce porttitor, magna non laoreet tincidunt, massa erat auctor elit, vel tincidunt eros ipsum ac quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas commodo neque eros, ut porttitor felis vestibulum id. Fusce a laoreet nulla. Nunc ut fermentum magna. Vivamus lacinia velit sit amet eros convallis, nec porttitor purus blandit. Mauris finibus porttitor pulvinar. Praesent molestie mi lacus.\n\nMauris cursus quis massa quis imperdiet. Phasellus semper at ligula vel blandit. Curabitur porttitor egestas tortor eu sagittis. Aliquam erat volutpat. Nam orci elit, condimentum sit amet arcu in, posuere laoreet orci. Nam ac commodo augue. In sollicitudin metus sit amet scelerisque bibendum.\n\nIn hac habitasse platea dictumst. Integer justo ligula, mollis non orci non, dictum dictum ante. Mauris eu arcu pellentesque, pellentesque lectus porttitor, consectetur urna. Morbi facilisis turpis tortor. Maecenas non hendrerit ex. Pellentesque euismod orci augue, sit amet laoreet justo rutrum in. Suspendisse eu consequat nisi, sed ullamcorper orci. Fusce vestibulum metus vel turpis commodo, eu malesuada arcu pharetra. Donec aliquet cursus diam eu euismod. Praesent commodo efficitur libero, sed volutpat urna fermentum non. Integer pretium, leo eu fermentum sagittis, odio neque lobortis lectus, a vestibulum erat eros quis libero. Duis sed leo eu orci interdum fringilla. Nulla sagittis velit id turpis elementum ultrices. Proin dignissim ipsum a tincidunt sagittis.\n\nNulla eget nunc tortor. Nulla egestas, neque a gravida efficitur, mi est mattis tortor, commodo gravida magna sapien scelerisque ante. Pellentesque elementum commodo nibh eget tempor. Fusce hendrerit ullamcorper egestas. Quisque consectetur sem et lorem laoreet, eu maximus diam varius. In hac habitasse platea dictumst. Duis non consectetur tortor. Quisque nulla diam, pretium eget sollicitudin pellentesque, viverra non dolor.","PalavrasChave":null,"ArrayIdsContextosVinculados":null},{"Id":6,"Descricao":"Como funciona esse geração de contrato avulso?","Resposta":"Resposta sobre geração de contrato avulso!     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, augue id malesuada aliquet, enim sapien sagittis velit, vitae malesuada magna massa eu diam. Nulla hendrerit venenatis tortor, non vehicula justo semper vel. Praesent ultrices pulvinar sagittis. Sed consectetur lorem eu mauris faucibus, at lacinia dolor imperdiet. Aliquam tincidunt feugiat viverra. Fusce malesuada purus eget est molestie efficitur. Praesent placerat sed magna a placerat. Sed dignissim elementum urna et mollis. Etiam quam ex, ultrices ac augue ac, tincidunt venenatis massa. Suspendisse consectetur augue sed maximus cursus. Etiam sagittis ante ipsum, vitae fringilla mauris tristique quis. Integer sit amet auctor massa, interdum dictum mauris. Praesent sed venenatis ante.\n\nFusce porttitor, magna non laoreet tincidunt, massa erat auctor elit, vel tincidunt eros ipsum ac quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas commodo neque eros, ut porttitor felis vestibulum id. Fusce a laoreet nulla. Nunc ut fermentum magna. Vivamus lacinia velit sit amet eros convallis, nec porttitor purus blandit. Mauris finibus porttitor pulvinar. Praesent molestie mi lacus.\n\nMauris cursus quis massa quis imperdiet. Phasellus semper at ligula vel blandit. Curabitur porttitor egestas tortor eu sagittis. Aliquam erat volutpat. Nam orci elit, condimentum sit amet arcu in, posuere laoreet orci. Nam ac commodo augue. In sollicitudin metus sit amet scelerisque bibendum.\n\nIn hac habitasse platea dictumst. Integer justo ligula, mollis non orci non, dictum dictum ante. Mauris eu arcu pellentesque, pellentesque lectus porttitor, consectetur urna. Morbi facilisis turpis tortor. Maecenas non hendrerit ex. Pellentesque euismod orci augue, sit amet laoreet justo rutrum in. Suspendisse eu consequat nisi, sed ullamcorper orci. Fusce vestibulum metus vel turpis commodo, eu malesuada arcu pharetra. Donec aliquet cursus diam eu euismod. Praesent commodo efficitur libero, sed volutpat urna fermentum non. Integer pretium, leo eu fermentum sagittis, odio neque lobortis lectus, a vestibulum erat eros quis libero. Duis sed leo eu orci interdum fringilla. Nulla sagittis velit id turpis elementum ultrices. Proin dignissim ipsum a tincidunt sagittis.\n\nNulla eget nunc tortor. Nulla egestas, neque a gravida efficitur, mi est mattis tortor, commodo gravida magna sapien scelerisque ante. Pellentesque elementum commodo nibh eget tempor. Fusce hendrerit ullamcorper egestas. Quisque consectetur sem et lorem laoreet, eu maximus diam varius. In hac habitasse platea dictumst. Duis non consectetur tortor. Quisque nulla diam, pretium eget sollicitudin pellentesque, viverra non dolor.","PalavrasChave":null,"ArrayIdsContextosVinculados":null}],"RetornoErro":null,"Sucesso":true}
 
                  
                      
-                         processarRetornoPesquisa(str);
+                 
 
-                      //   $.ajax(settings).done(function (response)
-                       //  {
+                       //  $.ajax(settings).done(function (response)
+                         //{
                       
 
-                       //      processarRetornoPesquisa(response);
-                       // 
-                       // })
+                             processarRetornoPesquisa(str);
+                        
+                        //})
                   }            
                             
                 $("#btnPesquisar").click(function()
@@ -242,7 +275,13 @@ h1 {
 
 
 
+
                 }); 
+
+
+                 
+
+                
 
 
 
@@ -332,7 +371,7 @@ h1 {
 
                                     htmlPergunta += "<div id=areaPerguntas data-role='content'> ";  
 
-                                    htmlPergunta += "<p><a href='#resp"+i+"' data-transition='slide'>"+perguntas+"</a></p> ";
+                                    htmlPergunta += "<p><a href='#resp"+i+"'  data-transition='slide'>"+perguntas+"</a></p> ";
 
                                     htmlPergunta += "</div>";   
                                     htmlPergunta += "</div>"; 
@@ -340,13 +379,13 @@ h1 {
                                     //-------------------------------------------------------------------------------------------------------
                                     //-------------------------------------------------------------------------------------------------------//-------------------------------------------------------------------------------------------------------//-------------------------------------------------------------------------------------------------------//-------------------------------------------------------------------------------------------------------
 
-                                    var strHtmlPergunta ="<p><a style='color:#000000;text-decoration:none; font-weight: bold;' class='estiloPergunta' style='text-decoration:none' href='#resp"+i+"' data-transition='slide'>"+perguntas+"</a></p>"; 
+                                    var strHtmlPergunta ="<p><a style='color:#000000;text-decoration:none; font-weight: bold;' id='teste' class='estiloPergunta' style='text-decoration:none' href='#resp"+i+"' data-transition='slide'>"+perguntas+"</a></p>"; 
 
                                   //  resposta = resposta.substring(0, resposta.length);
 
-
+                                    var respostaTradata = resposta.substring(0, 200);
     
-                                    strHtmlPergunta +="<p style=font-size:14px;>"+resposta+"</p><hr>"; 
+                                    strHtmlPergunta +="<p style=font-size:14px;>"+respostaTradata+"...</p><hr>"; 
 
 
                                     console.log("strHtmlPergunta");
@@ -355,7 +394,7 @@ h1 {
                                     $("#areaPerguntas").append(strHtmlPergunta);
                                   
                                     var htmlResposta = "";  
-                                    htmlResposta += "<div id='resp"+i+"'  data-role='page'><div data-role='header' style='height:30px;width:100%;display:inline-block;padding-left:10px;padding-top:5px;'> <div style='width:25%;height:100%;display:inline-block'><a href='#padrao1'  data-transition='slide'><img src='https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/arrow_left-512.png'  width=15px height=15px></a></div><div style='width:50%;height:100%;display:inline-block;text-align:center'>Cabecalho! F.A.Q</div></div>"; 
+                                    htmlResposta += "<div id='resp"+i+"'  data-role='page'><div data-role='header' style='height:30px;width:100%;display:inline-block;padding-left:10px;padding-top:5px;'> <div style='width:25%;height:100%;display:inline-block'><a href='#padrao1'  data-transition='slide'><img style='padding:5px;' src='https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/arrow_left-512.png' class=btnVoltar width=25px height=25px></a></div><div style='width:50%;height:100%;display:inline-block;text-align:center'>Cabecalho! F.A.Q</div></div><div class=areaAvaliacao style='position:fixed;bottom:0px;border-top:2px solid #EEE;;width:100%;height:70px;display:none'></div>"; 
 
 
 
@@ -415,12 +454,12 @@ var teste = {"ListaPerguntas":[{"Id":3,"Descricao":"Descrição pergunta 3?","Re
 
 
   <div id="padrao1" data-role="page">
-        <div data-role="header">  
+        <div data-role="header" style="padding-top:0px;">  
            <h1 style=font-weight:bold>Cabecalho F.A.Q</h1>
         </div>        
 <br / >
 <!-- Bootstrap FAQ - START -->
-<div class="formulario" style="padding-left: 10px;padding-right: 10px;">
+<div class="formulario" style="padding-left: 20px;padding-right: 20px;">
 
     <form style="display: inline-block; width: 100%;">
 
@@ -432,7 +471,7 @@ var teste = {"ListaPerguntas":[{"Id":3,"Descricao":"Descrição pergunta 3?","Re
         <input type="text"  style="width: 100%" placeholder="Qual é sua duvida?" size=50  id="txtPesquisa" name="txtPesquisa" value=""> 
         <span id="clear">
         
-          <img src="https://cdns.iconmonstr.com/wp-content/assets/preview/2018/240/iconmonstr-search-thin.png" id=btnPesquisar width=20px;>
+          <img src="https://cdns.iconmonstr.com/wp-content/assets/preview/2018/240/iconmonstr-search-thin.png" id=btnPesquisar>
 
         </span> 
     </div>
@@ -461,12 +500,16 @@ var teste = {"ListaPerguntas":[{"Id":3,"Descricao":"Descrição pergunta 3?","Re
            Resposta da pergunta 1
            <p><a href="#padrao1"  data-transition="slide">Voltar pra Pergunta?</a></p>
         </div>
+
+
   </div> 
 
 
 
 
+
 <!-- Bootstrap FAQ - END -->
+
 
 </div>
 
