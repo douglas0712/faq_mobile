@@ -155,7 +155,9 @@ h1 {
                            $("a.estiloPergunta").click(function()
                           {
                                console.log('teste');
-
+                                
+                                alert('teste');
+                                document.body.scrollTop = 0;
                                
                         //  setTimeout(function(){ $(".areaAvaliacao").show(); }, 3000);
 
@@ -255,8 +257,8 @@ h1 {
                      
                  
 
-                        // $.ajax(settings).done(function (response)
-                        // {
+                       // $.ajax(settings).done(function (response)
+                       //  {
                       
 
                              processarRetornoPesquisa(str);
